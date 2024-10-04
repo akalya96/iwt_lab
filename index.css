@@ -1,0 +1,175 @@
+.vv video{
+    position: absolute;
+    background-size: cover;
+    width: 100%;
+    right: 0;
+    bottom: 500;
+    z-index: -1;
+
+}
+
+body{
+    background: linear-gradient(#030334,#2c0519 100%);
+    color: azure;
+}
+
+
+
+q{
+    font-size: 4pc;
+}
+
+h1{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 300;
+    font-size: 100px;
+    display: inline;
+    padding-left: 4.2%;
+}
+h3{
+    margin: -1pt;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 500;
+    font-size: xx-large;
+    
+}
+h4{
+    margin: -1pc;
+    font-weight: 300;
+    font-size: larger;
+}
+li{
+    float: left;
+    list-style-type: none;
+    display: inline;
+    padding: 30% 16px;
+    border-right: 1px solid black;
+    background-color: rgb(227, 230, 163);
+    color: azure;
+    padding: 1% 1 0;
+    margin-left: 0;
+    padding: 19px;
+    margin-right: 40px;
+
+}
+ul > li:nth-last-of-type(-n+3){
+    display: inline;
+    float: right;
+    margin-right: 40px;
+    padding: 19px;
+}
+li:hover{
+    background-color: lightcoral;
+    color: darkviolet;
+    padding: 20px;
+}
+#About{
+    display: flex;
+
+}
+.new h2{
+    font-weight: 900;
+    font-size: 40px;
+}
+.new{
+    margin: 20px;
+    width: 500px;
+    padding-top:10px ;
+    border: 8px dotted rgb(174, 29, 116);
+    background-color: rgb(38, 27, 27);
+    text-align: center;
+    color: #58ffeec4;
+    font-size: 1.2pc;
+
+
+
+}
+.new1 h2{
+    font-weight: 900;
+    font-size: 40px;
+}
+.new1{
+    margin: 50px;
+    width: 500px;
+    padding-bottom: 40px;
+    border: 8px dotted rgb(174, 29, 116);
+    background-color: rgb(38, 27, 27);
+    text-align: center;
+    color: #58ffeec4;
+    font-size: 1.2pc;
+
+
+}
+.new2 h2{
+    font-weight: 900;
+    font-size: 40px;
+}
+.new2{
+    margin-top: -1px;
+  
+    width: 300px;
+    margin-left: 700px;
+    border: 8px dotted rgb(174, 29, 116);
+    background-color: rgb(38, 27, 27);
+    text-align: center;
+    padding: 18px;
+    color: #58ffeec4;
+    font-size: 1.2pc;
+}
+.new3 h2{
+    font-weight: 900;
+    font-size: 40px;
+}
+.new3{
+    padding-top: 100px;
+    margin-top: 30px;
+    width: 300px;
+    border: 8px dotted rgb(174, 29, 116);
+    background-color: rgb(38, 27, 27);
+    text-align: center;
+    padding: 40px;
+    color: #58ffeec4;
+    font-size: 1.2pc;
+    
+}
+.new6 h2{
+    font-weight: 900;
+    font-size: 40px;
+}
+
+.new6{
+    
+    
+    margin-left: 650px;
+    width: 300px;
+    border: 8px dotted rgb(174, 29, 116);
+    background-color: rgb(38, 27, 27);
+    text-align: center;
+    padding: 40px;
+    color: #58ffeec4;
+    font-size: 1.2pc;
+
+}
+.A1{
+    display: flex;
+    padding: 40px;
+}
+.nwev video{
+        position: absolute;
+        background-size: cover;
+        width: 100%;
+        right: 0;
+        bottom: 500;
+        z-index: -1;
+    
+}
+.new:hover{
+    background-color: rgb(69, 73, 77);
+
+}
+.para{
+
+    font-size: 30px;
+}
+
+

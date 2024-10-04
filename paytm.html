@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Jost', sans-serif;
+            background: linear-gradient(to bottom, #240a26, #501837, #ff6f9c);
+        }
+        .container {
+            width: 350px;
+            height: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: none;
+        }
+
+        h2 {
+            text-align: center;
+            color: #501837;
+        }
+
+        label {
+            color: #333;
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff6f9c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff467f;
+        }
+
+        /* Toggle Buttons */
+        .toggle-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .toggle-buttons button {
+            width: 45%;
+            margin: 5px;
+            background-color: #501837;
+        }
+
+        .toggle-buttons button.active {
+            background-color: #ff467f;
+        }
+
+        /* Payment Option Styles */
+        .payment-options {
+            margin-top: 20px;
+        }
+
+        .payment-options label {
+            display: inline-block;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .payment-methods {
+            display: none;
+        }
+
+        .payment-methods.active {
+            display: block;
+        }
+
+        /* Summary Section */
+        .summary {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .summary div {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toggle Buttons for Customer and Artist -->
+    <div class="toggle-buttons">
+        <button id="customer-btn" class="active" onclick="showForm('customer')">Customer</button>
+        <button id="artist-btn" onclick="showForm('artist')">Artist</button>
+    </div>
+
+    <!-- Customer Payment Form -->
+    <div class="container" id="customer-form">
+        <h2>Customer Payment</h2>
+
+        <div class="payment-options">
+            <label><input type="radio" name="payment-method" value="card" checked onchange="showPaymentMethod('card', 'customer')"> Credit Card</label>
+            <label><input type="radio" name="payment-method" value="upi" onchange="showPaymentMethod('upi', 'customer')"> UPI</label>
+            <label><input type="radio" name="payment-method" value="netbanking" onchange="showPaymentMethod('netbanking', 'customer')"> Net Banking</label>
+        </div>
+
+        <div id="customer-card-payment" class="payment-methods active">
+            <label for="customer-name">Full Name</label>
+            <input type="text" id="customer-name" placeholder="Enter your Name">
+            <label for="customer-card-number">Credit Card Number</label>
+            <input type="text" id="customer-card-number" placeholder="1111-2222-3333-4444">
+            <label for="customer-cvv">CVV</label>
+            <input type="password" id="customer-cvv" placeholder="XXX">
+            <label for="customer-subtotal">Subtotal</label>
+            <input type="number" id="customer-subtotal" placeholder="Enter Subtotal" oninput="calculateCustomerTax()" value="0">
+        </div>
+
+        <div id="customer-upi-payment" class="payment-methods">
+            <label for="customer-upi-id">UPI ID</label>
+            <input type="text" id="customer-upi-id" placeholder="your-upi-id@bank">
+            <label for="customer-subtotal">Subtotal</label>
+            <input type="number" id="customer-subtotal-upi" placeholder="Enter Subtotal" oninput="calculateCustomerTax()" value="0">
+        </div>
+
+        <div id="customer-netbanking-payment" class="payment-methods">
+            <label for="customer-bank">Select Bank</label>
+            <select id="customer-bank">
+                <option>HDFC Bank</option>
+                <option>ICICI Bank</option>
+                <option>State Bank of India</option>
+            </select>
+            <label for="customer-account-number">Account Number</label>
+            <input type="text" id="customer-account-number" placeholder="Enter Account Number">
+            <label for="customer-subtotal">Subtotal</label>
+            <input type="number" id="customer-subtotal-net" placeholder="Enter Subtotal" oninput="calculateCustomerTax()" value="0">
+        </div>
+
+        <label for="customer-address">Billing Address</label>
+        <input type="text" id="customer-address" placeholder="Enter Billing Address">
+        <label for="customer-district">District</label>
+        <input type="text" id="customer-district" placeholder="Enter District">
+
+        <div class="summary">
+            <div>Tax: ₹<span id="customer-tax">0</span></div>
+            <div>Total: ₹<span id="customer-total">0</span></div>
+        </div>
+
+        <button onclick="proceedToCheckout('customer')">Proceed to Checkout</button>
+    </div>
+
+
+    <div class="container" id="artist-form">
+        <h2>Artist Payment</h2>
+
+        <div class="payment-options">
+            <label><input type="radio" name="payment-method" value="card" checked onchange="showPaymentMethod('card', 'artist')"> Credit Card</label>
+            <label><input type="radio" name="payment-method" value="upi" onchange="showPaymentMethod('upi', 'artist')"> UPI</label>
+            <label><input type="radio" name="payment-method" value="netbanking" onchange="showPaymentMethod('netbanking', 'artist')"> Net Banking</label>
+        </div>
+
+        <div id="artist-card-payment" class="payment-methods active">
+            <label for="artist-name">Artist Name</label>
+            <input type="text" id="artist-name" placeholder="Enter your Name">
+            <label for="artist-portfolio">Portfolio Link</label>
+            <input type="url" id="artist-portfolio" placeholder="Enter your Portfolio URL">
+            <label for="artist-service">Service Type</label>
+            <select id="artist-service">
+                <option>Commission</option>
+                <option>Artwork</option>
+                <option>Music</option>
+            </select>
+            <label for="artist-card-number">Credit Card Number</label>
+            <input type="text" id="artist-card-number" placeholder="5555-6666-7777-8888">
+            <label for="artist-cvv">CVV</label>
+            <input type="password" id="artist-cvv" placeholder="XXX">
+            <label for="artist-subtotal">Subtotal</label>
+            <input type="number" id="artist-subtotal" placeholder="Enter Subtotal" oninput="calculateArtistTax()" value="0">
+        </div>
+
+        <div id="artist-upi-payment" class="payment-methods">
+            <label for="artist-upi-id">UPI ID</label>
+            <input type="text" id="artist-upi-id" placeholder="your-upi-id@bank">
+            <label for="artist-subtotal">Subtotal</label>
+            <input type="number" id="artist-subtotal-upi" placeholder="Enter Subtotal" oninput="calculateArtistTax()" value="0">
+        </div>
+
+        <div id="artist-netbanking-payment" class="payment-methods">
+            <label for="artist-bank">Select Bank</label>
+            <select id="artist-bank">
+                <option>HDFC Bank</option>
+                <option>ICICI Bank</option>
+                <option>State Bank of India</option>
+            </select>
+            <label for="artist-account-number">Account Number</label>
+            <input type="text" id="artist-account-number" placeholder="Enter Account Number">
+            <label for="artist-subtotal">Subtotal</label>
+            <input type="number" id="artist-subtotal-net" placeholder="Enter Subtotal" oninput="calculateArtistTax()" value="0">
+        </div>
+
+        <div class="summary">
+            <div>Tax: ₹<span id="artist-tax">0</span></div>
+            <div>Total: ₹<span id="artist-total">0</span></div>
+        </div>
+
+        <button onclick="proceedToCheckout('artist')">Proceed to Checkout</button>
+    </div>
+
+    <script>
+        function showForm(type) {
+            const customerForm = document.getElementById('customer-form');
+            const artistForm = document.getElementById('artist-form');
+            const customerBtn = document.getElementById('customer-btn');
+            const artistBtn = document.getElementById('artist-btn');
+
+            if (type === 'customer') {
+                customerForm.style.display = 'block';
+                artistForm.style.display = 'none';
+                customerBtn.classList.add('active');
+                artistBtn.classList.remove('active');
+            } else {
+                customerForm.style.display = 'none';
+                artistForm.style.display = 'block';
+                customerBtn.classList.remove('active');
+                artistBtn.classList.add('active');
+            }
+        }
+
+        function showPaymentMethod(method, type) {
+            const methods = ['card', 'upi', 'netbanking'];
+            methods.forEach((m) => {
+                const customerMethodDiv = document.getElementById(`${type}-` + m + `-payment`);
+                if (m === method) {
+                    customerMethodDiv.classList.add('active');
+                } else {
+                    customerMethodDiv.classList.remove('active');
+                }
+            });
+        }
+
+        function calculateCustomerTax() {
+            const subtotal = parseFloat(document.getElementById('customer-subtotal').value) || 0;
+            const taxRate = 0.18; // 18% tax
+            const tax = (subtotal * taxRate).toFixed(2);
+            const total = (subtotal + parseFloat(tax)).toFixed(2);
+            document.getElementById('customer-tax').innerText = tax;
+            document.getElementById('customer-total').innerText = total;
+        }
+
+        function calculateArtistTax() {
+            const subtotal = parseFloat(document.getElementById('artist-subtotal').value) || 0;
+            const taxRate = 0.18; // 18% tax
+            const tax = (subtotal * taxRate).toFixed(2);
+            const total = (subtotal + parseFloat(tax)).toFixed(2);
+            document.getElementById('artist-tax').innerText = tax;
+            document.getElementById('artist-total').innerText = total;
+        }
+
+        function proceedToCheckout(type) {
+            if (type === 'customer') {
+                const name = document.getElementById('customer-name').value;
+                const total = document.getElementById('customer-total').innerText;
+                alert(`Customer ${name}, your total payment is ₹${total}.`);
+            } else {
+                const name = document.getElementById('artist-name').value;
+                const total = document.getElementById('artist-total').innerText;
+                alert(`Artist ${name}, your total payment is ₹${total}.`);
+            }
+        }
+
+        // Set default form view to customer
+        showForm('customer');
+    </script>
+</body>
+</html>

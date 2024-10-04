@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+</head>
+<style>
+    video {
+        position: absolute;
+        background-size: cover;
+        width: 100%;
+        right: 0;
+        bottom: 500;
+        z-index: -1;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: 'Jost', sans-serif;
+        margin-right: 1000px;
+    }
+    .main {
+        width: 350px;
+        height: 700px; /* Increased height to accommodate new fields */
+        border-radius: 10px;
+        box-shadow: 5px 20px 50px rgb(32, 1, 6);
+        overflow: hidden;
+    }
+    #chk {
+        display: none;
+    }
+    .sfcus, .sfart {
+        position: absolute; /* Changed to absolute positioning */
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s ease-in-out; /* Smooth transition */
+    }
+    .sfart {
+        transform: translateY(100%); /* Initially hide artist form */
+    }
+    label {
+        color: #fff;
+        font-size: 2.3em;
+        justify-content: center;
+        display: flex;
+        margin: 3px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: .5s ease-in-out;
+    }
+    input, select {
+        width: 60%;
+        height: 40px; /* Increased height for all input and select elements */
+        background: #e0dede;
+        justify-content: center;
+        display: flex;
+        margin: 10px auto;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+    }
+    button {
+        width: 60%;
+        height: 40px;
+        margin: 10px auto;
+        justify-content: center;
+        display: block;
+        color: #fff;
+        background: rgb(71, 4, 15);
+        font-size: 1em;
+        font-weight: bold;
+        margin-top: 20px;
+        outline: none;
+        border-radius: 5px;
+        transition: .2s ease-in;
+        cursor: pointer;
+    }
+    button:hover {
+        background: rgb(66, 3, 14);
+    }
+    #password-strength, #password-strength-artist {
+        text-align: left;
+    }
+</style>
+
+<body>
+    <video autoplay loop muted plays-inline>
+        <source src="Peach colour soft background with blooming flowers.mp4" type="video/mp4">
+    </video>
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+        
+        <div class="sfcus">
+            <form>
+                <label for="chk" aria-hidden="true">Customers</label>
+                <input type="text" name="name" placeholder="Name" required pattern="[A-Za-z\s]+" title="Name must contain only alphabets">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="address" placeholder="Address" required>
+                <input type="text" name="city" placeholder="City" required>
+                <input type="text" name="zipcode" placeholder="Zip Code" required>
+                
+                <input type="password" id="password" name="password" placeholder="Password" required oninput="checkPasswordStrength()">
+                <div id="password-strength"></div>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <div class="sfart">
+            <form>
+                <label for="chk" aria-hidden="true">Artist</label>
+                <input type="text" name="name" placeholder="Name" required pattern="[A-Za-z\s]+" title="Name must contain only alphabets">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="address" placeholder="Address" required>
+                <input type="text" name="city" placeholder="City" required>
+                <input type="text" name="zipcode" placeholder="Zip Code" required>
+
+                <input type="password" id="password-artist" name="password" placeholder="Password" required oninput="checkPasswordStrengthArtist()">
+                <div id="password-strength-artist"></div>
+                <input type="password" name="confirm_password_artist" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const chk = document.getElementById('chk');
+        const sfcus = document.querySelector('.sfcus');
+        const sfart = document.querySelector('.sfart');
+
+        chk.addEventListener('change', function() {
+            if (this.checked) {
+                sfcus.style.transform = 'translateY(-100%)'; // Hide customer form
+                sfart.style.transform = 'translateY(0)'; // Show artist form
+            } else {
+                sfcus.style.transform = 'translateY(0)'; // Show customer form
+                sfart.style.transform = 'translateY(100%)'; // Hide artist form
+            }
+        });
+
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strength = document.getElementById('password-strength');
+            updatePasswordStrength(password, strength);
+        }
+
+        function checkPasswordStrengthArtist() {
+            const password = document.getElementById('password-artist').value;
+            const strength = document.getElementById('password-strength-artist');
+            updatePasswordStrength(password, strength);
+        }
+
+        function updatePasswordStrength(password, strengthElement) {
+            let strengthMessage = '';
+            let strengthColor = '';
+
+            if (password.length < 6) {
+                strengthMessage = 'Weak';
+                strengthColor = 'red';
+            } else if (password.length < 10) {
+                strengthMessage = 'Moderate';
+                strengthColor = 'orange';
+            } else {
+                strengthMessage = 'Strong';
+                strengthColor = 'green';
+            }
+
+            strengthElement.textContent = `Strength: ${strengthMessage}`;
+            strengthElement.style.color = strengthColor;
+        }
+    </script>
+</body>
+</html>

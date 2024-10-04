@@ -1,0 +1,27 @@
+body{
+    background-size:  cover;
+    
+}
+img{
+    box-sizing: 20px;
+    height: 590px;
+    width: 550px;
+    border-radius: 80px;
+    padding: 2px;
+    
+}
+h1{
+    
+    font-weight: 800;
+    font-size: 200px;
+
+}
+.gallery img{
+    height: 100px;
+    width: 10px;
+}
+
+
+
+
+

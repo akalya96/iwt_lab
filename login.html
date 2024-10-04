@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Luxora Digital Art Gallery</title>
+    <link rel="stylesheet" href="s.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Welcome to Luxora</h1>
+        <p>Select your role to log in</p>
+        <div class="role-buttons">
+            <button class="role-btn" id="artist-btn">Artist Login</button>
+            <button class="role-btn" id="customer-btn">Customer Login</button>
+        </div>
+        
+        <!-- Artist Login Form -->
+        <div class="login-form artist-form" id="artist-form">
+            <h2>Artist Login</h2>
+            <form action="#">
+                <input type="text" placeholder="Artist Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        
+        <!-- Customer Login Form -->
+        <div class="login-form customer-form" id="customer-form">
+            <h2>Customer Login</h2>
+            <form action="#">
+                <input type="text" placeholder="Customer Username" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const artistBtn = document.getElementById('artist-btn');
+        const customerBtn = document.getElementById('customer-btn');
+        const artistForm = document.getElementById('artist-form');
+        const customerForm = document.getElementById('customer-form');
+
+        artistBtn.addEventListener('click', () => {
+            artistForm.style.display = 'block';
+            customerForm.style.display = 'none';
+        });
+
+        customerBtn.addEventListener('click', () => {
+            customerForm.style.display = 'block';
+            artistForm.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

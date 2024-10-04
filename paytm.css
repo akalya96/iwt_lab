@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #ff6e7f, #bfe9ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.sfcus, .sfart {
+    width: 100%;
+    padding: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea, select {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background: #ff6e7f;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #ff3b47;
+}
+
+.glitter-button {
+    background: linear-gradient(45deg, #ff6e7f, #ff3b47, #ff6e7f);
+    background-size: 200% auto;
+    color: white;
+    text-transform: uppercase;
+    animation: glitter 2s linear infinite;
+}
+
+@keyframes glitter {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

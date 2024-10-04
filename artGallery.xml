@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="art_gallery.xsl"?>
+<artGallery>
+    <artPiece id="1">
+        <artistName>Frida Kahlo (1907-1954)</artistName>
+        <artistDescription>Mexican painter known for her self-portraits and works inspired by nature, identity, and post-colonialism.</artistDescription>
+        <galleryDescription>A vivid exploration of personal and cultural identity through powerful self-portraits.</galleryDescription>
+        <artStyle>Surrealism</artStyle>
+        <yearCreated>1940</yearCreated>
+        <rating>4.8</rating>
+    </artPiece>
+    <artPiece id="2">
+        <artistName>Roy Lichtenstein (1923-1997)</artistName>
+        <artistDescription>Pop artist famous for his comic strip-style paintings, using bold colors and patterns in popular culture.</artistDescription>
+        <galleryDescription>Iconic pop art depicting commercial and comic book imagery with a distinctive style.</galleryDescription>
+        <artStyle>Pop Art</artStyle>
+        <yearCreated>1964</yearCreated>
+        <rating>4.7</rating>
+    </artPiece>
+    <artPiece id="3">
+        <artistName>Georgia O'Keeffe (1887-1986)</artistName>
+        <artistDescription>American modernist painter best known for her large-scale depictions of flowers and desert landscapes.</artistDescription>
+        <galleryDescription>Stunning representations of nature’s beauty through large, abstracted flowers and landscapes.</galleryDescription>
+        <artStyle>Modernism</artStyle>
+        <yearCreated>1932</yearCreated>
+        <rating>4.9</rating>
+    </artPiece>
+    <artPiece id="4">
+        <artistName>Andy Warhol (1928-1987)</artistName>
+        <artistDescription>Leading figure in the pop art movement, recognized for his works of celebrity culture and mass consumerism.</artistDescription>
+        <galleryDescription>Celebrated for blending art with commercialism, featuring iconic images of celebrities and products.</galleryDescription>
+        <artStyle>Pop Art</artStyle>
+        <yearCreated>1962</yearCreated>
+        <rating>4.8</rating>
+    </artPiece>
+</artGallery>

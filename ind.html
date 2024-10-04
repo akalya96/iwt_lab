@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:output method="html" encoding="UTF-8" indent="yes"/>
+    
+    <xsl:template match="/">
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title>Digital Art Gallery</title>
+            <style>
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                th, td {
+                    border: 1px solid black;
+                    padding: 10px;
+                    text-align: left;
+                }
+                th {
+                    background-color: #f2f2f2;
+                }
+                tr:nth-child(even) {
+                    background-color: #f9f9f9;
+                }
+            </style>
+        </head>
+        <body>
+            <h2>Digital Art Gallery</h2>
+            <table id="artTable">
+                <thead>
+                    <tr>
+                        <th>Artist Name</th>
+                        <th>Artist Description</th>
+                        <th>Gallery Description</th>
+                        <th>Art Style</th>
+                        <th>Year Created</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <xsl:for-each select="artGallery/artPiece">
+                        <tr>
+                            <td><xsl:value-of select="artistName"/></td>
+                            <td><xsl:value-of select="artistDescription"/></td>
+                            <td><xsl:value-of select="galleryDescription"/></td>
+                            <td><xsl:value-of select="artStyle"/></td>
+                            <td><xsl:value-of select="yearCreated"/></td>
+                            <td><xsl:value-of select="rating"/></td>
+                        </tr>
+                    </xsl:for-each>
+                </tbody>
+            </table>
+        </body>
+        </html>
+    </xsl:template>
+</xsl:stylesheet>

@@ -1,0 +1,10 @@
+<!ELEMENT artGallery (artPiece+)>
+<!ELEMENT artPiece (artistName, artistDescription, galleryDescription, artStyle, yearCreated, rating)>
+<!ATTLIST artPiece id CDATA #REQUIRED>
+
+<!ELEMENT artistName (#PCDATA)>
+<!ELEMENT artistDescription (#PCDATA)>
+<!ELEMENT galleryDescription (#PCDATA)>
+<!ELEMENT artStyle (#PCDATA)>
+<!ELEMENT yearCreated (#PCDATA)>
+<!ELEMENT rating (#PCDATA)>
